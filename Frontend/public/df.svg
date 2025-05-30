@@ -1,0 +1,10 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- 字母D -->
+    <path d="M30 30 L30 90 L60 90 C75 90 80 75 80 60 C80 45 75 30 60 30 L30 30 Z"
+          stroke="#3B82F6" stroke-width="8" stroke-linejoin="round"/>
+    <!-- 字母F（线条延展设计） -->
+    <path d="M90 30 L90 60 M90 30 L130 30 M90 45 L120 45 M90 90 L90 60 L120 60"
+          stroke="#10B981" stroke-width="8" stroke-linecap="round"/>
+    <!-- 右下角小标记 -->
+    <circle cx="110" cy="110" r="5" fill="#3B82F6"/>
+</svg>

@@ -1,0 +1,10 @@
+# Mysql环境配置
+spring:
+  datasource:
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/data_flex?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=GMT%2b8
+    embedded-database-connection: none
+
+

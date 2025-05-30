@@ -1,0 +1,75 @@
+server:
+  port: 8080
+spring:
+  profiles:
+    active: mysql
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+# MyBatis配置
+mybatis:
+  # 配置mapper的扫描，找到所有的mapper.xml映射文件
+  mapperLocations: classpath*:mapper/**/*Mapper.xml
+  # 加载全局的配置文件
+  configLocation: classpath:mybatis/mybatis-config.xml
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 开启sql日志
+    map-underscore-to-case: true # 开启驼峰映射(mp默认开启)
+# Swagger配置
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    #operations-sorter: order
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan: com.trf
+  default-flat-param-object: true
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
+    swagger-model-name: 实体类列表
+  documents: #文档补充说明
+    - name: MarkDown语法说明
+      locations: classpath:markdown/*
+      group: default
+#    - name: 补充文档
+#      locations: classpath:markdown1/*
+#      group: default
+  basic: #权限访问设置
+    enable: false #默认不开启登陆校验
+    username: root
+    password: 123456
+api:
+  title: DataFlex # 这里设置 API 文档的标题，如果不设置，默认为 'API Documentation'
+  version: 0.1 # 设置 API 文档的版本，如果不设置，默认为 '1.0'
+  description: DataFlex接口文档 # 设置 API 文档的描述，如果不设置，默认为 'OpenAPI Documentation'
+  termsOfServiceUrl: https://example.com/terms # 设置 API 文档的服务条款 URL，如果不设置，默认为空
+  license:
+    name: 自定义许可证名称 # 设置 API 文档中显示的许可证名称，如果不设置，默认为 'name'
+    url: https://example.com/license # 设置 API 文档中许可证的 URL，如果不设置，默认为 'url'
+  contact:
+    name: 唐如飞
+    url: https://tangrufei.com
+    email: t15927505989@163.com
+############## Sa-Token 配置 (文档: https://sa-token.cc) ##############
+sa-token:
+  # token 名称（同时也是 cookie 名称）
+  token-name: satoken
+  # token 有效期（单位：秒） 默认30天，-1 代表永久有效
+  timeout: 2592000
+  # token 最低活跃频率（单位：秒），如果 token 超过此时间没有访问系统就会被冻结，默认-1 代表不限制，永不冻结
+  active-timeout: -1
+  # 是否允许同一账号多地同时登录 （为 true 时允许一起登录, 为 false 时新登录挤掉旧登录）
+  is-concurrent: true
+  # 在多人登录同一账号时，是否共用一个 token （为 true 时所有登录共用一个 token, 为 false 时每次登录新建一个 token）
+  is-share: false
+  # token 风格（默认可取值：uuid、simple-uuid、random-32、random-64、random-128、tik）
+  token-style: uuid
+  # 是否输出操作日志
+  is-log: true
