@@ -29,6 +29,14 @@ export default ts.config(
     },
     rules: {
       // --- Vue 专用规则 ---
+      "vue/singleline-html-element-content-newline": [
+        "error",
+        {
+          ignoreWhenNoAttributes: true,
+          ignoreWhenEmpty: true,
+          ignores: ["slot", "template"] // 关键配置：忽略这些标签  // [!code focus]
+        }
+      ],
       "vue/multi-word-component-names": "off", // 允许单单词组件名
       "vue/block-order": [
         "error",

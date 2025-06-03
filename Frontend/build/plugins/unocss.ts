@@ -1,7 +1,7 @@
 import process from "node:process";
 import path from "node:path";
 import UnoCSS from "unocss/vite";
-import { presetIcons } from "unocss";
+import { presetIcons, presetUno } from "unocss";
 import { FileSystemIconLoader } from "@iconify/utils/lib/loader/node-loaders";
 
 export function setupUnocss(viteEnv: Env.ImportMeta) {
@@ -11,6 +11,7 @@ export function setupUnocss(viteEnv: Env.ImportMeta) {
   const collectionName = VITE_ICON_LOCAL_PREFIX.replace(`${VITE_ICON_PREFIX}-`, "");
   return UnoCSS({
     presets: [
+      presetUno,
       presetIcons({
         prefix: `${VITE_ICON_PREFIX}-`,
         scale: 1,
