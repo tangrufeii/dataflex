@@ -9,6 +9,7 @@
       :row-key="rowKey"
       :pagination="pagination"
       @update:checked-row-keys="handleCheck" />
+    <MenuSaveOrUpdate v-model:show="modalVisible" :is-edit="isEditMode" />
   </n-card>
 </template>
 <script setup lang="ts">
@@ -21,9 +22,23 @@ import SVGIcon from "@/components/custom/SVGIcon.vue";
 import { DataTableRowKey, NTag } from "naive-ui";
 import { formatLocaleDateTime } from "@/utils/dateFormatter.ts";
 import type { RowData } from "naive-ui/es/data-table/src/interface";
+import type { SysMenu } from "@/api/methods/router.ts";
+import MenuSaveOrUpdate from "@/views/system/menu/_MenuSaveOrUpdate.vue";
 const routerStore = useRouteStore();
+// 模态框控制
+const modalVisible = ref(false);
+const isEditMode = ref(false);
+const currentEditData = ref<SysMenu | null>(null);
+// 打开模态框（通用方法）
+const openModal = (isEdit: boolean, rowData?: SysMenu) => {
+  isEditMode.value = isEdit;
+  currentEditData.value = isEdit ? rowData : null;
+  modalVisible.value = true;
+};
+
 const add = () => {
   NaiveUtils.success("1111", { duration: 2000 });
+  openModal(false, null);
 };
 /** 选中行 **/
 const checkedRowKeys = ref<DataTableRowKey[]>([]);
@@ -121,4 +136,15 @@ const pagination = reactive({
   }
 });
 </script>
+<route lang="json">
+{
+  "meta": {
+    "i18nKey": "system_menu",
+    "type": 2,
+    "title": "菜单管理",
+    "isMenu": true,
+    "icon": "application-menu"
+  }
+}
+</route>
 <style scoped></style>

@@ -17,7 +17,7 @@ export const useAppStore = defineStore(SetupStoreId.App, () => {
     bool: siderCollapse,
     setBool: setSiderCollapse,
     toggle: toggleSiderCollapse
-  } = useBoolean();
+  } = useBoolean(true);
   /**
    * 创建响应式断点
    */

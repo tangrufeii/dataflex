@@ -10,8 +10,6 @@ export const themeSchemaRecord: Record<UnionKey.ThemeScheme, App.I18n.I18nKey> =
   auto: "theme.themeSchema.auto"
 };
 
-export const themeSchemaOptions = transformRecordToOption(themeSchemaRecord);
-
 export const loginModuleRecord: Record<UnionKey.LoginModule, App.I18n.I18nKey> = {
   "pwd-login": "page.login.pwdLogin.title",
   "code-login": "page.login.codeLogin.title",

@@ -217,7 +217,6 @@ function recursiveGetIsRouteExistByRouteName(route: ElegantConstRoute, routeName
  */
 export function getSelectedMenuKeyPathByKey(selectedKey: string, menus: App.Global.Menu[]) {
   const keyPath: string[] = [];
-
   menus.some(menu => {
     const path = findMenuPath(selectedKey, menu);
 
@@ -243,12 +242,11 @@ function findMenuPath(targetKey: string, menu: App.Global.Menu): string[] | null
   const path: string[] = [];
 
   function dfs(item: App.Global.Menu): boolean {
-    path.push(item.key);
+    path.push(item.name);
 
-    if (item.key === targetKey) {
+    if (item.name === targetKey) {
       return true;
     }
-
     if (item.children) {
       for (const child of item.children) {
         if (dfs(child)) {

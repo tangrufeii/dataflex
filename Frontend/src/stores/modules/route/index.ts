@@ -4,6 +4,7 @@ import { SetupStoreId } from "@/enum";
 import useBoolean from "../../../utils/useBoolean.ts";
 import type { SysMenu } from "../../../api/methods/router.ts";
 import type { MenuOption } from "naive-ui";
+import { getSelectedMenuKeyPathByKey } from "./shared.ts";
 
 export const useRouteStore = defineStore(
   SetupStoreId.Route,
@@ -15,7 +16,8 @@ export const useRouteStore = defineStore(
 
     // 使用 ref 存储菜单列表
     const menuList = ref<MenuOption[]>();
-
+    /**全局菜单 */
+    const menus = ref<App.Global.Menu[]>([]);
     /**
      * 设置菜单列表（支持平铺和树形结构）
      * @param list 从后端获取的菜单数据
@@ -41,12 +43,20 @@ export const useRouteStore = defineStore(
       menuList.value = transformedList;
       return transformedList;
     }
-
+    /**
+     * 获取所选菜单键路径
+     *
+     * @param selectedKey Selected menu key
+     */
+    function getSelectedMenuKeyPath(selectedKey: string) {
+      return getSelectedMenuKeyPathByKey(selectedKey, menuList.value);
+    }
     return {
       isInitConstantRoute,
       setIsInitConstantRoute,
       isInitAuthRoute,
       setIsInitAuthRoute,
+      getSelectedMenuKeyPath,
       menuList,
       setMenuList
     };

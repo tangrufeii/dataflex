@@ -2,6 +2,7 @@ package com.trf.common.db;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -12,8 +13,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 @Slf4j
-@Component
 public class DBUtils {
+
     private final DataSource dataSource;
     private final DatabaseMetaData metaData;
 

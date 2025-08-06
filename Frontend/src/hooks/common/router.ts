@@ -6,7 +6,7 @@ import { router as globalRouter } from "@/router";
 /**
  * Router push
  *
- * Jump to the specified route, it can replace function router.push
+ * 跳转到指定的路由，可以替换函数router.push
  *
  * @param inSetup Whether is in vue script setup
  */
@@ -39,14 +39,12 @@ export function useRouterPush(inSetup = true) {
   function routerPushByKeyWithMetaQuery(key: RouteKey) {
     const allRoutes = router.getRoutes();
     const meta = allRoutes.find(item => item.name === key)?.meta || null;
-
     const query: Record<string, string> = {};
-
     meta?.query?.forEach(item => {
       query[item.key] = item.value;
     });
-
-    return routerPushByKey(key, { query });
+    console.error(key, query);
+    return routerPushByKey(key, { meta });
   }
 
   async function toHome() {

@@ -24,3 +24,9 @@ export const routerAlova = createAlova({
   requestAdapter: adapterFetch(),
   responded: response => response.json()
 });
+export const menuAlova = createAlova({
+  baseURL: "http://127.0.0.1:8080/sysMenu",
+  statesHook: VueHook,
+  requestAdapter: adapterFetch(),
+  responded: response => response.json()
+});

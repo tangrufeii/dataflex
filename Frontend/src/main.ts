@@ -17,10 +17,10 @@ install(app);
 setupDayjs();
 /** 初始化naive-ui框架 **/
 app.use(naive);
-/** 初始化路由 **/
-await setupRouter(app);
 /** 初始化pinia**/
 setupStore(app);
+/** 初始化路由 **/
+await setupRouter(app);
 /** 初始i18n国际化 **/
 setupI18n(app);
 app.mount("#app");

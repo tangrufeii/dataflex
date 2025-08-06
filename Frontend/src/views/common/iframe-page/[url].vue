@@ -9,6 +9,8 @@
       ref="iframeRef"
       :src="url"
       style="height: 100%; width: 100%"
+      allow="camera *; microphone *"
+      sandbox="allow-same-origin allow-scripts allow-forms"
       @load="onIframeLoad"
       @error="onIframeError"></iframe>
   </div>

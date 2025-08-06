@@ -22,6 +22,9 @@ const localeFormats = {
 
 /**
  * 智能本地化日期格式化
+ * 示例用法：
+ *  中文输出: "2025年4月23日 10时41分46秒"
+ *  英文输出: "April 23, 2025 10:41:46 AM"
  * @param utcString ISO时间字符串
  * @param formatType 格式类型
  */
@@ -37,7 +40,3 @@ export const formatLocaleDateTime = (
 
   return dayjs(utcString).format(localeFormats[locale][formatType] || localeFormats[locale].full);
 };
-
-// 示例用法：
-// 中文输出: "2025年4月23日 10时41分46秒"
-// 英文输出: "April 23, 2025 10:41:46 AM"

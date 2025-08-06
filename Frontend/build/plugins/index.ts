@@ -7,13 +7,11 @@ import { setupUnplugin } from "./unplugin";
 import VueRouter from "unplugin-vue-router/vite";
 import LayoutManager from "vite-plugin-vue-layouts";
 import { setupUnocss } from "./unocss";
+import { setupAutoRouter } from "./autoRouter";
 export function setupVitePlugins(viteEnv: Env.ImportMeta, buildTime: string) {
   const plugins: PluginOption = [
     // 必须放在 Vue 插件之前
-    VueRouter({
-      routesFolder: "src/views", // 路由组件目录
-      dts: "types/typed-router.d.ts" // 类型声明文件
-    }),
+    setupAutoRouter(viteEnv),
     LayoutManager({
       layoutsDirs: "src/layouts", // 布局组件目录
       defaultLayout: "base" // 默认布局名（对应 layouts/default.vue）

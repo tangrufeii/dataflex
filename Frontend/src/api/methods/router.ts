@@ -38,6 +38,10 @@ export interface SysMenu {
   /** 国际化键 **/
   i18nKey?: string;
   children?: List<SysMenu>;
+  /** 是否是外链(0否 1是) **/
+  isFrame?: number;
+  /** 外链链接 **/
+  url?: string;
 }
 
 /**

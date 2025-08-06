@@ -21,7 +21,11 @@ export default defineConfig(configEnv => {
         "~": fileURLToPath(new URL("./", import.meta.url))
       }
     },
+    build: {
+      sourcemap: true // ✨ 关键配置
+    },
     server: {
+      historyApiFallback: true,
       host: "0.0.0.0",
       port: 9527,
       open: true
