@@ -174,6 +174,20 @@ const local: App.I18n.Schema = {
     doc_alova: "Alova文档"
   },
   page: {
+    about: {
+      title: "关于",
+      introduction:
+        "它是一个清新优雅、高颜值且功能强大的后台管理模板，采用 Naive UI 组件库，并最新的前端技术栈，包括 Vue3, Vite5, TypeScript, Pinia 和 UnoCSS。它内置了丰富的主题配置和组件，代码规范严谨，实现了自动化的文件路由系统。 为您提供了一站式的后台管理解决方案，无需额外配置，开箱即用。同样是一个快速学习前沿技术的最佳实践",
+      projectInfo: {
+        title: "项目信息",
+        version: "版本",
+        latestBuildTime: "最新构建时间",
+        githubLink: "Github 地址",
+        previewLink: "预览地址"
+      },
+      prdDep: "生产依赖",
+      devDep: "开发依赖"
+    },
     sysMenu: {
       title: "菜单管理",
       button: {

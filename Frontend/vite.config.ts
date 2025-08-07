@@ -24,6 +24,9 @@ export default defineConfig(configEnv => {
     build: {
       sourcemap: true // ✨ 关键配置
     },
+    define: {
+      BUILD_TIME: JSON.stringify(buildTime)
+    },
     server: {
       historyApiFallback: true,
       host: "0.0.0.0",
