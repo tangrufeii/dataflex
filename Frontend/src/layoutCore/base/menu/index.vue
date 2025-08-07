@@ -75,6 +75,30 @@ const menuOptions = computed<CustomMenuOption[]>(() => {
   if (!routerStore.menuList) {
     return [];
   }
+  // 深度优先排序函数
+  const sortMenu = (menus: any[]): any[] => {
+    return menus
+      .sort((a, b) => {
+        // 处理可能的undefined情况
+        const sortA = a.sort ?? 0;
+        const sortB = b.sort ?? 0;
+        console.error(sortA, sortB);
+        return sortA - sortB;
+      })
+      .map(menu => {
+        if (menu.children && menu.children.length > 0) {
+          return {
+            ...menu,
+            children: sortMenu(menu.children)
+          };
+        }
+        return menu;
+      });
+  };
+  console.error("routerStore.menuList", routerStore.menuList);
+  // 先排序再转换
+  const sortedMenus = sortMenu([...routerStore.menuList]);
+  console.error("sortedMenus", sortedMenus);
   const transformMenu = (menu: any): CustomMenuOption => {
     const label = menu.i18nKey ? $t(`route.${menu.i18nKey}`) : menu.name || "";
     return {
@@ -86,22 +110,9 @@ const menuOptions = computed<CustomMenuOption[]>(() => {
     };
   };
   console.error("routerStore.menuList", routerStore.menuList);
-  return routerStore.menuList.map(transformMenu);
+  return sortedMenus.map(transformMenu);
 });
-const renderLabel = (option: MenuOption) => {
-  const label = option.i18nKey ? $t(`route.${option.i18nKey}`) : option.name || "";
-  console.error("option", option);
-  return h(NEllipsis, null, {
-    // 关键修改：这里必须用函数返回插槽内容
-    default: () =>
-      option.parentId != 0 && option.type == 2
-        ? h(RouterLink, { to: option?.path || "/home" }, () => label)
-        : h(RouterLink, { to: "" }, () => label)
-  });
-};
-onMounted(() => {
-  console.error("初始化");
-});
+onMounted(() => {});
 </script>
 
 <style scoped></style>

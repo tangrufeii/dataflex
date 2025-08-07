@@ -1,20 +1,20 @@
 <template>
-  <NSpace vertical :size="16">
+  <NSpace :size="16" vertical>
     <NCard
-      :title="$t('page.about.title')"
       :bordered="false"
-      size="small"
+      :title="$t('page.about.title')"
+      class="card-wrapper"
       segmented
-      class="card-wrapper">
+      size="small">
       <p>{{ $t("page.about.introduction") }}</p>
     </NCard>
     <NCard
-      :title="$t('page.about.projectInfo.title')"
       :bordered="false"
-      size="small"
+      :title="$t('page.about.projectInfo.title')"
+      class="card-wrapper"
       segmented
-      class="card-wrapper">
-      <NDescriptions label-placement="left" bordered size="small" :column="column">
+      size="small">
+      <NDescriptions :column="column" bordered label-placement="left" size="small">
         <NDescriptionsItem :label="$t('page.about.projectInfo.version')">
           <NTag type="primary">{{ pkgJson.version }}</NTag>
         </NDescriptionsItem>
@@ -22,36 +22,36 @@
           <NTag type="primary">{{ latestBuildTime }}</NTag>
         </NDescriptionsItem>
         <NDescriptionsItem :label="$t('page.about.projectInfo.githubLink')">
-          <a class="text-primary" :href="pkg.homepage" target="_blank" rel="noopener noreferrer">
+          <a :href="pkg.homepage" class="text-primary" rel="noopener noreferrer" target="_blank">
             {{ $t("page.about.projectInfo.githubLink") }}
           </a>
         </NDescriptionsItem>
         <NDescriptionsItem :label="$t('page.about.projectInfo.previewLink')">
-          <a class="text-primary" :href="pkg.website" target="_blank" rel="noopener noreferrer">
+          <a :href="pkg.website" class="text-primary" rel="noopener noreferrer" target="_blank">
             {{ $t("page.about.projectInfo.previewLink") }}
           </a>
         </NDescriptionsItem>
       </NDescriptions>
     </NCard>
     <NCard
-      :title="$t('page.about.prdDep')"
       :bordered="false"
-      size="small"
+      :title="$t('page.about.prdDep')"
+      class="card-wrapper"
       segmented
-      class="card-wrapper">
-      <NDescriptions label-placement="left" bordered size="small" :column="column">
+      size="small">
+      <NDescriptions :column="column" bordered label-placement="left" size="small">
         <NDescriptionsItem v-for="item in pkgJson.dependencies" :key="item.name" :label="item.name">
           {{ item.version }}
         </NDescriptionsItem>
       </NDescriptions>
     </NCard>
     <NCard
-      :title="$t('page.about.devDep')"
       :bordered="false"
-      size="small"
+      :title="$t('page.about.devDep')"
+      class="card-wrapper"
       segmented
-      class="card-wrapper">
-      <NDescriptions label-placement="left" bordered size="small" :column="column">
+      size="small">
+      <NDescriptions :column="column" bordered label-placement="left" size="small">
         <NDescriptionsItem
           v-for="item in pkgJson.devDependencies"
           :key="item.name"
@@ -63,7 +63,7 @@
   </NSpace>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed } from "vue";
 import { $t } from "@/locales";
 import pkg from "~/package.json";
@@ -104,5 +104,16 @@ const pkgJson: PkgJson = {
 
 const latestBuildTime = BUILD_TIME;
 </script>
-
+<route lang="json">
+{
+  "meta": {
+    "i18nKey": "about",
+    "type": 2,
+    "title": "关于",
+    "isMenu": true,
+    "sort": 99,
+    "icon": "info"
+  }
+}
+</route>
 <style scoped></style>

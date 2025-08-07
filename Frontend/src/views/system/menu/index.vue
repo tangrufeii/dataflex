@@ -1,10 +1,10 @@
 <template>
-  <n-card :bordered="true" style="height: 100%" :title="$t('route.sysMenu')">
+  <n-card :bordered="true" style="height: 100%" :title="$t('page.sysMenu.title')">
     <template #header-extra>
       <TableHeaderOperation v-model:columns="columns" @add="add" />
     </template>
     <n-data-table
-      :columns="columns"
+      :columns="columns.filter(c => c.visible)"
       :data="data"
       :row-key="rowKey"
       :pagination="pagination"
@@ -48,14 +48,20 @@ function handleCheck(rowKeys: DataTableRowKey[]) {
 function rowKey(row: RowData) {
   return row.name;
 }
-const columns = computed(() => [
+const initialColumns = [
   {
-    type: "selection"
+    type: "selection",
+    title: $t("page.sysMenu.table.columns.check"),
+    visible: true
   },
   {
     title: $t("page.sysMenu.table.columns.name"),
     key: "name",
-    align: "left"
+    align: "left",
+    ellipsis: true,
+    render: (item, index) => {
+      return item.i18nKey ? $t(`route.${item.i18nKey}`) : item.name;
+    }
   },
   {
     title: $t("page.sysMenu.table.columns.icon"),
@@ -65,7 +71,8 @@ const columns = computed(() => [
   {
     title: $t("page.sysMenu.table.columns.path"),
     key: "path",
-    align: "center"
+    align: "center",
+    ellipsis: {}
   },
   {
     title: $t("page.sysMenu.table.columns.perms"),
@@ -113,14 +120,22 @@ const columns = computed(() => [
   {
     title: $t("page.sysMenu.table.columns.createTime"),
     key: "createTime",
-    render: row => h("span", formatLocaleDateTime(row.createTime, "picker"))
+    render: row => formatLocaleDateTime(row.createTime, "picker"),
+    ellipsis: {}
   },
   {
     title: $t("page.sysMenu.table.columns.updateTime"),
     key: "updateTime",
-    render: row => h("span", formatLocaleDateTime(row.createTime, "picker"))
+    render: row => h("span", formatLocaleDateTime(row.updateTime, "picker")),
+    ellipsis: {}
   }
-]);
+];
+const columns = ref<NaiveUI.TableColumnCheck[]>(
+  initialColumns.map(col => ({
+    ...col,
+    visible: col.visible ?? true // 若 checked 未定义/null 则默认为 true
+  }))
+);
 const data = ref(routerStore.menuList);
 const pagination = reactive({
   page: 2,

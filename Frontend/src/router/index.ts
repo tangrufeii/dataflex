@@ -132,7 +132,7 @@ export const convertRoutesToMenus = (routes: RouteRecordRaw[], parentPath = ""):
       component: effectiveCom.component,
       perms: null,
       type: effectiveMeta?.type || menuType,
-      sort: 0,
+      sort: effectiveMeta?.sort ?? 0,
       visible: 1,
       status: 1,
       deleted: 0,
@@ -156,7 +156,6 @@ export const convertRoutesToMenus = (routes: RouteRecordRaw[], parentPath = ""):
       menus.push(menuItem);
     }
   }
-
   return menus;
 };
 const historyCreatorMap: Record<Env.RouterHistoryMode, (base?: string) => RouterHistory> = {

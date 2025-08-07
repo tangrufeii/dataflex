@@ -12,7 +12,7 @@
       <VueDraggable v-model="columns" :animation="150" filter=".none_draggable">
         <div v-for="item in columns" :key="item.key" class="column-item">
           <SVGIcon :icon="'drag'" class="drag-handle" />
-          <NCheckbox v-model:checked="item.checked" class="column-checkbox none_draggable">
+          <NCheckbox v-model:checked="item.visible" class="column-checkbox none_draggable">
             <template v-if="typeof item.title === 'function'">
               <component :is="item.title" />
             </template>

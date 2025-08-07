@@ -173,7 +173,8 @@ const local: App.I18n.Schema = {
     doc_vue: "Vue Document",
     doc_unocss: "Unocss Document",
     doc_naive_ui: "Naive UI Document",
-    doc_alova: "Alova Document"
+    doc_alova: "Alova Document",
+    about: "About"
   },
   page: {
     about: {
@@ -191,7 +192,7 @@ const local: App.I18n.Schema = {
       devDep: "Development Dependency"
     },
     sysMenu: {
-      title: "Menu Management",
+      title: "Menu List",
       button: {
         add: "Add Menu",
         addRoot: "Add Root Menu",

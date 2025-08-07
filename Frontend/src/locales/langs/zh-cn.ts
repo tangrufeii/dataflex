@@ -171,7 +171,8 @@ const local: App.I18n.Schema = {
     doc_vue: "vue文档",
     doc_unocss: "Unocss文档",
     doc_naive_ui: "Naive UI文档",
-    doc_alova: "Alova文档"
+    doc_alova: "Alova文档",
+    about: "关于"
   },
   page: {
     about: {
@@ -189,7 +190,7 @@ const local: App.I18n.Schema = {
       devDep: "开发依赖"
     },
     sysMenu: {
-      title: "菜单管理",
+      title: "菜单列表",
       button: {
         add: "新增菜单",
         addRoot: "新增根菜单",
@@ -201,6 +202,7 @@ const local: App.I18n.Schema = {
       },
       table: {
         columns: {
+          check: "勾选",
           id: "菜单ID",
           name: "菜单名称",
           i18nKey: "国际化键",

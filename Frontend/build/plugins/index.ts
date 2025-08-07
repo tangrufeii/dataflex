@@ -16,7 +16,11 @@ export function setupVitePlugins(viteEnv: Env.ImportMeta, buildTime: string) {
       layoutsDirs: "src/layouts", // 布局组件目录
       defaultLayout: "base" // 默认布局名（对应 layouts/default.vue）
     }),
-    vue(),
+    vue({
+      script: {
+        defineModel: true // 启用特性
+      }
+    }),
     setupDevtoolsPlugin(viteEnv),
     setupUnocss(viteEnv),
     ...setupUnplugin(viteEnv),
