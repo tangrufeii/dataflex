@@ -43,7 +43,6 @@ export function useRouterPush(inSetup = true) {
     meta?.query?.forEach(item => {
       query[item.key] = item.value;
     });
-    console.error(key, query);
     return routerPushByKey(key, { meta });
   }
 

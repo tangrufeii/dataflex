@@ -4,7 +4,7 @@ import { ref } from "vue";
 import { setLocale } from "../../../locales";
 import { localStg } from "../../../utils/storage.ts";
 import { setDayjsLocale } from "../../../locales/dayjs.ts";
-import useBoolean from "../../../utils/useBoolean.ts";
+import useBoolean from "../../../utils/use-boolean.ts";
 import { breakpointsTailwind, useBreakpoints } from "@vueuse/core";
 import type { ThemeMode } from "../../../../types/enums/theme.ts";
 

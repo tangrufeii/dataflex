@@ -1,7 +1,7 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
 import { SetupStoreId } from "@/enum";
-import useBoolean from "../../../utils/useBoolean.ts";
+import useBoolean from "../../../utils/use-boolean.ts";
 import type { SysMenu } from "../../../api/methods/router.ts";
 import type { MenuOption } from "naive-ui";
 import { getSelectedMenuKeyPathByKey } from "./shared.ts";

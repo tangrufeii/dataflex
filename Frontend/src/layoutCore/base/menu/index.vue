@@ -41,7 +41,7 @@ function updateExpandedKeys() {
 
   // 获取当前应展开的路径Keys（去重避免重复添加）
   const newKeysToAdd = routerStore.getSelectedMenuKeyPath(selectedKey.value) || [];
-  console.error("newKeysToAdd", newKeysToAdd);
+
   // 合并现有 expandedKeys 和新增Keys（使用Set自动去重）
   nextTick(() => {
     expandedKeys.value = [
@@ -82,7 +82,6 @@ const menuOptions = computed<CustomMenuOption[]>(() => {
         // 处理可能的undefined情况
         const sortA = a.sort ?? 0;
         const sortB = b.sort ?? 0;
-        console.error(sortA, sortB);
         return sortA - sortB;
       })
       .map(menu => {
@@ -95,10 +94,8 @@ const menuOptions = computed<CustomMenuOption[]>(() => {
         return menu;
       });
   };
-  console.error("routerStore.menuList", routerStore.menuList);
   // 先排序再转换
   const sortedMenus = sortMenu([...routerStore.menuList]);
-  console.error("sortedMenus", sortedMenus);
   const transformMenu = (menu: any): CustomMenuOption => {
     const label = menu.i18nKey ? $t(`route.${menu.i18nKey}`) : menu.name || "";
     return {
@@ -109,7 +106,6 @@ const menuOptions = computed<CustomMenuOption[]>(() => {
       label: label
     };
   };
-  console.error("routerStore.menuList", routerStore.menuList);
   return sortedMenus.map(transformMenu);
 });
 onMounted(() => {});

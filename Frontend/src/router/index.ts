@@ -85,7 +85,6 @@ interface MenuItem {
  */
 export const convertRoutesToMenus = (routes: RouteRecordRaw[], parentPath = ""): MenuItem[] => {
   const menus: MenuItem[] = [];
-
   for (const route of routes) {
     // 跳过空路径的路由项，但保留其meta给父级使用
     if (route.path === "") {
@@ -195,6 +194,20 @@ function generateDefaultName(path: string): string {
 function getDefaultIcon(menuType: 1 | 2): string {
   return menuType === 1 ? "folder" : "file";
 }
+// 工具函数：统一添加索引
+function addIndices(menus: MenuItem[]): MenuItem[] {
+  let index = 0;
+  const assignIndex = (items: MenuItem[]): MenuItem[] => {
+    return items.map(item => ({
+      ...item,
+      index: index++,
+      id: index++,
+      key: index++,
+      children: item.children ? assignIndex(item.children) : undefined
+    }));
+  };
+  return assignIndex(menus);
+}
 // 基础路由表（同步）
 const constantRoutes: RouteRecordRaw[] = [
   {
@@ -238,7 +251,7 @@ const loadDynamicRoutes = async (): Promise<RouteRecordRaw[]> => {
     const { data } = await getMenuList();
     const staticMenu = autoRouterTransomMenuList(routes);
     DOCUMENT_ROUTES.forEach(it => staticMenu.push(it));
-    routerStore.setMenuList(staticMenu);
+    routerStore.setMenuList(addIndices(staticMenu));
     CONSTANT_ROUTES.forEach(it => staticMenu.push(it));
     return BASE_ROUTER; // 静态模式直接返回空（或你的静态路由）
   }
@@ -416,7 +429,6 @@ export const router = initRouter();
 export async function setupRouter(app: App) {
   // 动态添加路由
   const dynamicRoutes = await loadDynamicRoutes();
-  console.error("dynamicRoutes", dynamicRoutes);
   setupLayouts(dynamicRoutes).forEach(route => {
     router.addRoute(route);
   });

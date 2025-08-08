@@ -10,12 +10,7 @@
       </NButton>
       <NPopconfirm class="delete-confirm" @positive-click="batchDelete">
         <template #trigger>
-          <NButton
-            size="small"
-            ghost
-            type="error"
-            class="operation-button"
-            :disabled="disabledDelete">
+          <NButton size="small" ghost type="error" class="operation-button" :disabled="!hasCheck">
             <template #icon>
               <SVGIcon :icon="'delete-one'" :size="18" class="button-icon" />
             </template>
@@ -44,6 +39,7 @@
 import { $t } from "@/locales";
 import TableColumnSetting from "./TableColumnSetting.vue";
 import SVGIcon from "@/components/custom/SVGIcon.vue";
+import { computed } from "vue";
 
 defineOptions({
   name: "TableHeaderOperation"
@@ -51,11 +47,10 @@ defineOptions({
 
 interface Props {
   itemAlign?: NaiveUI.Align;
+  checkedRowKeys?: string[];
   disabledDelete?: boolean;
   loading?: boolean;
 }
-
-defineProps<Props>();
 
 interface Emits {
   (e: "add"): void;
@@ -64,6 +59,12 @@ interface Emits {
 }
 
 const emit = defineEmits<Emits>();
+
+const props = defineProps<Props>();
+
+const hasCheck = computed(() => {
+  return props.checkedRowKeys?.length ?? 0 > 0;
+});
 
 const columns = defineModel<NaiveUI.TableColumnCheck[]>("columns", {
   default: () => []
